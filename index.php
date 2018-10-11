@@ -37,6 +37,10 @@ $token = $session->generateToken(array(
     'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
     'data'       => 'name=Johnny'//방이름 변경
 ));
+//$conn=pg_connect(getenv("postgres://guysuywytepygg:cab4905d6f5fcd3034da4bee3305841803936c3953fb18f17cb8082c37a950d1@ec2-23-21-147-71.compute-1.amazonaws.com:5432/dlfs3hk56lv93"));
+
+$conn=pg_connect("host=ec2-23-21-147-71.compute-1.amazonaws.com dbname=dlfs3hk56lv93 user=guysuywytepygg password=cab4905d6f5fcd3034da4bee3305841803936c3953fb18f17cb8082c37a950d1");
+pg_query($conn,"insert into(sessionId,roomname,curplay) VIDEOSESSION values('$sessionId','room','true')");
 
 $response=array();
 if(isset($sessionId)&&isset($token)){
