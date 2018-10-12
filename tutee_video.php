@@ -19,6 +19,7 @@ $result=pg_query($conn,"SELECT sessionid,video_name FROM VIDEOSESSION where curp
 /*num=$video_no and group_no=$group_no and */
 while($row=pg_fetch_row($result)){
   $sessionId=$row[0];
+  $video_name=$row[1];
 }
 
 $token = $opentok->generateToken($sessionId);
