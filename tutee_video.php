@@ -15,7 +15,7 @@ $video_no=$_POST["position"];
 $group_no=$_POST["group_no"];
 
 $conn=pg_connect("host=ec2-23-21-147-71.compute-1.amazonaws.com dbname=dlfs3hk56lv93 user=guysuywytepygg password=cab4905d6f5fcd3034da4bee3305841803936c3953fb18f17cb8082c37a950d1");
-$result=pg_query($conn,"SELECT sessionid,roomname FROM VIDEOSESSION where curplay=true");
+$result=pg_query($conn,"SELECT sessionid,roomname FROM VIDEOSESSION where num=$video_no and group_no=$group_no and curplay=true");
 /*num=$video_no and group_no=$group_no and */
 while($row=pg_fetch_row($result)){
   $sessionId=$row[0];
@@ -45,7 +45,7 @@ if(isset($sessionId)&&isset($token)){
 pg_close($conn);
 
 header('Content-Type: application/json; charset=utf8');
-echo json_encode("response"=>$response);
+echo json_encode($response);
 
 //pg_close($conn);
 ?>
