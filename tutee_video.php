@@ -46,10 +46,10 @@ echo $sessionid;
 echo $token;
 echo $video_name;
 
-pg_close($conn);
+//pg_close($conn);
 
 header('Content-Type: application/json; charset=utf8');
 echo json_encode("response"=>$response);
 
-
+pg_close($conn);
 ?>
