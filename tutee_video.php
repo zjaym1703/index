@@ -10,6 +10,7 @@ use OpenTok\Role;
 $apiKey='46191302';
 $apiSecret='e077924487e0175ec8d5c9344a3dd050c8120470';
 $opentok = new OpenTok($apiKey, $apiSecret);
+$video_name = 'aaa';
 
 $video_no=$_POST["position"];
 $group_no=$_POST["group_no"];
@@ -37,7 +38,7 @@ if(isset($sessionId)&&isset($token)){
   $response["apiKey"]=$apiKey;
   $response["sessionId"]=$sessionId;
   $response["token"]=$token;
-  $response["id"]=$
+  $response["video_name"]=$video_name;
 }
 
 pg_close($conn);
