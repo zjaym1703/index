@@ -41,10 +41,6 @@ if(isset($sessionId)&&isset($token)){
   $response["video_name"]=$video_name;
   $response["success"]=true;
 }
-echo $apiKey;
-echo $sessionid;
-echo $token;
-echo $video_name;
 
 //pg_close($conn);
 
