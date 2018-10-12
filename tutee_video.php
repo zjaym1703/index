@@ -34,13 +34,13 @@ $token = $opentok->generateToken($sessionId);
 
 
 $response=array();
-//if(isset($sessionId)&&isset($token)){
+if(isset($sessionId)&&isset($token)){
   $response["apiKey"]=$apiKey;
   $response["sessionid"]=$sessionid;
   $response["token"]=$token;
   $response["video_name"]=$video_name;
   $response["success"]=true;
-//}
+}
 echo $apiKey;
 echo $sessionid;
 echo $token;
