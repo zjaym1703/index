@@ -16,7 +16,7 @@ $video_no=$_POST["position"];
 $group_no=$_POST["group_no"];
 
 $conn=pg_connect("host=ec2-23-21-147-71.compute-1.amazonaws.com dbname=dlfs3hk56lv93 user=guysuywytepygg password=cab4905d6f5fcd3034da4bee3305841803936c3953fb18f17cb8082c37a950d1");
-$result=pg_query($conn,"SELECT sessionid FROM VIDEOSESSION where num=$video_no, group_no=$group_no", curplay=true);
+$result=pg_query($conn,"SELECT sessionid FROM VIDEOSESSION where num=$video_no, group_no=$group_no, curplay=true");
 
 while($row=pg_fetch_row($result)){
   $sessionId=$row[0];
