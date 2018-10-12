@@ -42,10 +42,10 @@ if(isset($sessionId)&&isset($token)){
   $response["success"]=true;
 }
 
-//pg_close($conn);
+pg_close($conn);
 
 header('Content-Type: application/json; charset=utf8');
-echo json_encode("response"=>$response);
+echo json_encode($response);
 
-pg_close($conn);
+//pg_close($conn);
 ?>
