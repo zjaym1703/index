@@ -45,7 +45,7 @@ if(isset($sessionId)&&isset($token)){
 pg_close($conn);
 
 header('Content-Type: application/json; charset=utf8');
-echo json_encode($response);
+echo json_encode("response"=>$response);
 
 
 ?>
