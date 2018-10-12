@@ -39,6 +39,7 @@ $response=array();
   $response["sessionid"]=$sessionid;
   $response["token"]=$token;
   $response["video_name"]=$video_name;
+  $response["success"]=true;
 //}
 echo $apiKey;
 echo $sessionid;
