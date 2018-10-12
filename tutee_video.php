@@ -39,13 +39,11 @@ $response=array();
   $response["sessionid"]=$sessionid;
   $response["token"]=$token;
   $response["video_name"]=$video_name;
-  $response["curplay"]=$curplay;
 //}
 echo $apiKey;
 echo $sessionid;
 echo $token;
 echo $video_name;
-echo $curplay;
 
 pg_close($conn);
 
