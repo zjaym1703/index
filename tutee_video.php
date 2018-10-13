@@ -34,14 +34,12 @@ $token = $opentok->generateToken($sessionId);
 
 
 $response=array();
-while($sessionId){
 if(isset($sessionId)&&isset($token)){
   $response["apiKey"]=$apiKey;
   $response["sessionid"]=$sessionId;
   $response["token"]=$token;
   $response["video_name"]=$video_name;
   $response["success"]=true;
-}
 }
 
 pg_close($conn);
