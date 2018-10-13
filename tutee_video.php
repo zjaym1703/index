@@ -34,7 +34,7 @@ $token = $opentok->generateToken($sessionId);
 
 
 $response=array();
-while(isset($sessionId)&&isset($token)){
+if(isset($sessionId)&&isset($token)){
   $response["apiKey"]=$apiKey;
   $response["sessionid"]=$sessionId;
   $response["token"]=$token;
