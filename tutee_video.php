@@ -36,7 +36,7 @@ $token = $opentok->generateToken($sessionId);
 $response=array();
 if(isset($sessionId)&&isset($token)){
   $response["apiKey"]=$apiKey;
-  $response["sessionid"]=$sessionid;
+  $response["sessionid"]=$sessionId;
   $response["token"]=$token;
   $response["video_name"]=$video_name;
   $response["success"]=true;
