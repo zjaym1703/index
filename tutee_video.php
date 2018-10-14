@@ -21,7 +21,7 @@ while($row=pg_fetch_row($result)){
   //$sessionId=$row[0];
   //$roomname=$row[1];
   
-  array_push($response,array("sessionid"=>$row[0],"roomname"=>$row[1]));
+  array_push($response,array($sessionid=>$row[0],$roomname=>$row[1]));
 }
 
 //$token = $opentok->generateToken($sessionId);
