@@ -8,7 +8,7 @@ $sessionId=$_POST["sessionId"];
 
 $result=pg_query($conn,"UPDATE VIDEOSESSION SET curplay=false WHERE sessionId='$sessionId'");
 
-if(isset($result)){
+if($result){
   $response=array();
   $response["success"]=true;
 }
