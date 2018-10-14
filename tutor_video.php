@@ -11,6 +11,9 @@ $apiKey='46191302';
 $apiSecret='e077924487e0175ec8d5c9344a3dd050c8120470';
 $opentok = new OpenTok($apiKey, $apiSecret);
 
+$video_name=$_GET["video_name"];
+$group_num=(int)$_GET["group_no"];
+
 // Create a session that attempts to use peer-to-peer streaming:
 $session = $opentok->createSession();
 // A session that uses the OpenTok Media Router, which is required for archiving:
@@ -49,7 +52,7 @@ $conn=pg_connect("host=ec2-23-21-147-71.compute-1.amazonaws.com dbname=dlfs3hk56
   } else {
       echo 'Connection status bad';
   }*/
-pg_query($conn,"INSERT INTO VIDEOSESSION(sessionId,roomname,curplay) VALUES('$sessionId','room',true)");
+pg_query($conn,"INSERT INTO VIDEOSESSION(sessionId,roomname,curplay,group_num) VALUES('$sessionId','$video_name',true,'$group_num')");
 
 $response=array();
 if(isset($sessionId)&&isset($token)){
