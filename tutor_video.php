@@ -11,8 +11,8 @@ $apiKey='46191302';
 $apiSecret='e077924487e0175ec8d5c9344a3dd050c8120470';
 $opentok = new OpenTok($apiKey, $apiSecret);
 
-$video_name=$_GET["video_name"];//fragment 액티비티에서 넘어오는 값
-$group_num=(int)$_GET["group_no"];//마찬가지
+$video_name=$_POST["video_name"];//fragment 액티비티에서 넘어오는 값
+$group_num=(int)$_POST["group_no"];//마찬가지
 
 // Create a session that attempts to use peer-to-peer streaming:
 $session = $opentok->createSession();
