@@ -11,8 +11,8 @@ $apiKey='46191302';
 $apiSecret='e077924487e0175ec8d5c9344a3dd050c8120470';
 $opentok = new OpenTok($apiKey, $apiSecret);
 
-$video_name=$_GET["video_name"];
-$group_num=(int)$_GET["group_no"];
+$video_name=$_GET["video_name"];//fragment 액티비티에서 넘어오는 값
+$group_num=(int)$_GET["group_no"];//마찬가지
 
 // Create a session that attempts to use peer-to-peer streaming:
 $session = $opentok->createSession();
@@ -53,6 +53,7 @@ $conn=pg_connect("host=ec2-23-21-147-71.compute-1.amazonaws.com dbname=dlfs3hk56
       echo 'Connection status bad';
   }*/
 pg_query($conn,"INSERT INTO VIDEOSESSION(sessionId,roomname,curplay,group_num) VALUES('$sessionId','$video_name',true,'$group_num')");
+//group_num추가 --> 테이블 구조도 변경함
 
 $response=array();
 if(isset($sessionId)&&isset($token)){
