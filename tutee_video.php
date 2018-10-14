@@ -22,7 +22,12 @@ while($row=pg_fetch_row($result)){
   $video_name=$row[1];
 }
 
-$token = $opentok->generateToken($sessionId);
+//$token = $opentok->generateToken($sessionId);
+$token=$opentok->generateToken($sessionId,array(
+  'role'       => Role::SUBSCRIBER,
+  'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
+  'data'       => 'name=Johnny'//방이름 변경
+));
 /*$token = $token->generateToken(array(
     'role'       => Role::SUBSCRIBER,
     'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
