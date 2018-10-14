@@ -6,12 +6,15 @@ pg_set_client_encoding($conn, "UTF8");
 
 $sessionId=$_POST["sessionId"];
 
-pg_query($conn,"UPDATE VIDEOSESSION SET curplay=false WHERE sessionId='$sessionId'");
+$result=pg_query($conn,"UPDATE VIDEOSESSION SET curplay=false WHERE sessionId='$sessionId'");
 
-$response=array();
-$response["success"]=true;
+if(isset($result)){
+  $response=array();
+  $response["success"]=true;
+}
 
 pg_close($conn);
 
+header('Content-Type: application/json; charset=utf8');
 echo json_encode($response);
 ?>
