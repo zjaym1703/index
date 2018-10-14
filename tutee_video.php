@@ -18,8 +18,10 @@ $conn=pg_connect("host=ec2-23-21-147-71.compute-1.amazonaws.com dbname=dlfs3hk56
 $result=pg_query($conn,"SELECT sessionid,roomname FROM VIDEOSESSION where curplay=true");
 /*group_num=$group_num and */
 while($row=pg_fetch_row($result)){
-  $sessionId=$row[0];
-  $roomname=$row[1];
+  //$sessionId=$row[0];
+  //$roomname=$row[1];
+  
+  array_push($response,array("sessionid"=>$row[0],"roomname"=>$row[1]));
 }
 
 //$token = $opentok->generateToken($sessionId);
