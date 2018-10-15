@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+require 'vendor/autload.php';
 
 use OpenTok\OpenTok;
 use OpenTok\MediaMode;
@@ -11,34 +11,24 @@ $apiKey='46191302';
 $apiSecret='e077924487e0175ec8d5c9344a3dd050c8120470';
 $opentok = new OpenTok($apiKey, $apiSecret);
 
-//$video_no=$_POST["position"];
-$group_num=$_POST["group_num"];
+$group_num$_POST["group_num"];
 
 $conn=pg_connect("host=ec2-23-21-147-71.compute-1.amazonaws.com dbname=dlfs3hk56lv93 user=guysuywytepygg password=cab4905d6f5fcd3034da4bee3305841803936c3953fb18f17cb8082c37a950d1");
 $result=pg_query($conn,"SELECT sessionid, roomname FROM VIDEOSESSION where curplay=true");
 echo $result;
-/*group_num=$group_num and */
+
 while($row=pg_fetch_row($result)){
   $sessionid=$row[0];
   $roomname=$row[1];
 }
 
 echo $sessionid;
-//$token = $opentok->generateToken($sessionId);
-$token=$opentok->generateToken($sessionid,array(
+
+$token=$opentok->generateToken($sessionid, array(
   'role'       => Role::SUBSCRIBER,
   'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
   'data'       => 'name=Johnny'//방이름 변경
-));
-/*$token = $token->generateToken(array(
-    'role'       => Role::SUBSCRIBER,
-    'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
-    '*/
-
-// Generate a Token by calling the method on the Session (returned from createSession)
-//$token = $session->generateToken();
-// Set some options in a token
-
+  ));
 
 $response=array();
 if(isset($sessionid)&&isset($token)){
@@ -49,11 +39,9 @@ if(isset($sessionid)&&isset($token)){
   $response["success"]=true;
 }
 
-//pg_close($conn);
-
 header('Content-Type: application/json; charset=utf8');
-//echo json_encode($response);
-echo json_encode(array("response"=>$response),JSON_UNESCAPED_UNICODE);
+echo json_encode($response);
+//echo json_encode(array("response"=>$response),JSON_UNESCAPED_UNICODE);
 
 pg_close($conn);
 ?>
