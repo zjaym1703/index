@@ -40,8 +40,8 @@ if(isset($sessionid)&&isset($token)){
 }
 
 header('Content-Type: application/json; charset=utf8');
-echo json_encode($response);
-//echo json_encode(array("response"=>$response),JSON_UNESCAPED_UNICODE);
+//echo json_encode($response);
+echo json_encode(array("response"=>$response),JSON_UNESCAPED_UNICODE);
 
 pg_close($conn);
 ?>
