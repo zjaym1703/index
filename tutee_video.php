@@ -23,6 +23,7 @@ while($row=pg_fetch_row($result)){
   $roomname=$row[1];
 }
 
+echo $sessionid;
 //$token = $opentok->generateToken($sessionId);
 $token=$opentok->generateToken($sessionid,array(
   'role'       => Role::SUBSCRIBER,
