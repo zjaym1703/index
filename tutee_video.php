@@ -7,7 +7,7 @@ use OpenTok\ArchiveMode;
 use OpenTok\Session;
 use OpenTok\Role;
 
-$apiKey=46191302;
+$apiKey='46191302';
 $apiSecret='e077924487e0175ec8d5c9344a3dd050c8120470';
 $opentok = new OpenTok($apiKey, $apiSecret);
 
