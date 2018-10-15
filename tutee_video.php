@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autload.php';
+require 'vendor/autoload.php';
 
 use OpenTok\OpenTok;
 use OpenTok\MediaMode;
