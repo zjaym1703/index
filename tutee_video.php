@@ -15,15 +15,15 @@ $opentok = new OpenTok($apiKey, $apiSecret);
 $group_num=$_POST["group_num"];
 
 $conn=pg_connect("host=ec2-23-21-147-71.compute-1.amazonaws.com dbname=dlfs3hk56lv93 user=guysuywytepygg password=cab4905d6f5fcd3034da4bee3305841803936c3953fb18f17cb8082c37a950d1");
-$result=pg_query($conn,"SELECT sessionid, roomname FROM VIDEOSESSION where group_num='$group_num' and curplay=true");
+$result=pg_query($conn,"SELECT sessionid, roomname FROM VIDEOSESSION where curplay=true");
 /*group_num=$group_num and */
 while($row=pg_fetch_row($result)){
-  $sessionId=$row[0];
+  $sessionid=$row[0];
   $roomname=$row[1];
 }
 
 //$token = $opentok->generateToken($sessionId);
-$token=$opentok->generateToken($sessionId,array(
+$token=$opentok->generateToken($sessionid,array(
   'role'       => Role::SUBSCRIBER,
   'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
   'data'       => 'name=Johnny'//방이름 변경
@@ -39,9 +39,9 @@ $token=$opentok->generateToken($sessionId,array(
 
 
 $response=array();
-if(isset($sessionId)&&isset($token)){
+if(isset($sessionid)&&isset($token)){
   $response["apiKey"]=$apiKey;
-  $response["sessionid"]=$sessionId;
+  $response["sessionid"]=$sessionid;
   $response["token"]=$token;
   $response["video_name"]=$roomname;
   $response["success"]=true;
