@@ -18,12 +18,12 @@ $conn=pg_connect("host=ec2-23-21-147-71.compute-1.amazonaws.com dbname=dlfs3hk56
 $result=pg_query($conn,"SELECT sessionid, roomname FROM VIDEOSESSION where group_num=$group_num and curplay=true");
 /*group_num=$group_num and */
 while($row=pg_fetch_row($result)){
-  $sessionid=$row[0];
+  $sessionId=$row[0];
   $roomname=$row[1];
 }
 
 //$token = $opentok->generateToken($sessionId);
-$token=$opentok->generateToken($sessionid,array(
+$token=$opentok->generateToken($sessionId,array(
   'role'       => Role::SUBSCRIBER,
   'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
   'data'       => 'name=Johnny'//방이름 변경
@@ -39,9 +39,9 @@ $token=$opentok->generateToken($sessionid,array(
 
 
 $response=array();
-if(isset($sessionid)&&isset($token)){
+if(isset($sessionId)&&isset($token)){
   $response["apiKey"]=$apiKey;
-  $response["sessionid"]=$sessionid;
+  $response["sessionid"]=$sessionId;
   $response["token"]=$token;
   $response["video_name"]=$roomname;
   $response["success"]=true;
