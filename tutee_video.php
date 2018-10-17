@@ -1,6 +1,5 @@
 <?php
 require 'vendor/autoload.php';
-
 use OpenTok\OpenTok;
 use OpenTok\MediaMode;
 use OpenTok\ArchiveMode;
@@ -9,39 +8,38 @@ use OpenTok\Role;
 
 $apiKey='46191302';
 $apiSecret='e077924487e0175ec8d5c9344a3dd050c8120470';
+
+$con=mysqli_connect("us-cdbr-iron-east-01.cleardb.net","b5abea0f4c48d4","f97c6b56","heroku_82b359327db23c4");
+mysqli_set_charset($con,"utf8");
+
+$group_num=(int)$_POST["group_no"];
+//토큰생성
 $opentok = new OpenTok($apiKey, $apiSecret);
 
-$group_num=$_POST["group_num"];
+$state=mysqli_query($con,"SELECT sessionId,roomName FROM VIDEOSESSION WHERE curplay=1 and group_no='$group_num'");
 
-$conn=pg_connect("host=ec2-23-21-147-71.compute-1.amazonaws.com dbname=dlfs3hk56lv93 user=guysuywytepygg password=cab4905d6f5fcd3034da4bee3305841803936c3953fb18f17cb8082c37a950d1");
-$result=pg_query($conn,"SELECT sessionid, roomname FROM VIDEOSESSION where curplay=true");
-echo $result;
-
-while($row=pg_fetch_row($result)){
-  $sessionid=$row[0];
-  $roomname=$row[1];
+while($row=mysqli_fetch_row($state)){
+  $sessionId=$row[0];
+  $roomName=$row[1];
 }
+//echo $sessionId;
 
-echo $sessionid;
-
-$token=$opentok->generateToken($sessionid, array(
+$token=$opentok->generateToken($sessionId, array(
   'role'       => Role::SUBSCRIBER,
   'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
   'data'       => 'name=Johnny'//방이름 변경
   ));
 
 $response=array();
-if(isset($sessionid)&&isset($token)){
+if(isset($sessionId)&&isset($token)){
   $response["apiKey"]=$apiKey;
-  $response["sessionid"]=$sessionid;
+  $response["sessionid"]=$sessionId;
   $response["token"]=$token;
-  $response["video_name"]=$roomname;
+  $response["video_name"]=$roomName;
   $response["success"]=true;
 }
+  header('Content-Type: application/json; charset=utf8');
+  echo json_encode(array("response"=>$response),JSON_UNESCAPED_UNICODE);
+  mysqli_close($con);
 
-header('Content-Type: application/json; charset=utf8');
-//echo json_encode($response);
-echo json_encode(array("response"=>$response),JSON_UNESCAPED_UNICODE);
-
-pg_close($conn);
 ?>
