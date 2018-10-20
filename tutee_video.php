@@ -14,6 +14,7 @@ $apiSecret='e077924487e0175ec8d5c9344a3dd050c8120470';
 //mysqli_real_connect($con, "appmeet.mysql.database.azure.com", "myadmin@appmeet", "meet2017157920173861!","appmeet", 3306);
 //$con=mysqli_connect("us-cdbr-iron-east-01.cleardb.net","b5abea0f4c48d4","f97c6b56","heroku_82b359327db23c4");
 $conn=mysqli_connect("appmeet.mysql.database.azure.com", "myadmin@appmeet", "meet2017157920173861!","appmeet", 3306);
+//mysqli_real_connect($conn, "appmeet.mysql.database.azure.com", "myadmin@appmeet", "meet2017157920173861!","appmeet", 3306);
 mysqli_set_charset($conn,"utf8");
 
 $group_num=$_GET["group_no"];
@@ -21,7 +22,7 @@ $group_num=(int)$group_num;
 //토큰생성
 $opentok = new OpenTok($apiKey, $apiSecret);
 
-$state=mysqli_query($con,"SELECT sessionId,videoName FROM VIDEOSESSION WHERE curplay=1 and groupNum='$group_num'");
+$state=mysqli_query($conn,"SELECT sessionId,videoName FROM VIDEOSESSION WHERE curplay=1 and groupNum='$group_num'");
 
 while($row=mysqli_fetch_array($state)){
   $sessionId=$row[0];
@@ -36,7 +37,6 @@ $token=$opentok->generateToken($sessionId, array(
 
 $response=array();
 $response["success"]=false;
-
 if($state){
   $response["apiKey"]=$apiKey;
   $response["sessionid"]=$sessionId;
