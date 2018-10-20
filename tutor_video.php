@@ -20,9 +20,9 @@ $video_name=$_GET["video_name"];//fragment 액티비티에서 넘어오는 값
 $group_num=(int)$_GET["group_no"];//마찬가지
 
 if(isset($video_name)&& isset($group_num)){
-    echo '변수 존재 o';
+    echo 'isset o';
 }else {
-  echo '변수 존재 x';
+  echo 'isset x';
 }
 
 // Create a session that attempts to use peer-to-peer streaming:
