@@ -11,14 +11,16 @@ $apiKey='46191302';
 $apiSecret='e077924487e0175ec8d5c9344a3dd050c8120470';
 $opentok = new OpenTok($apiKey, $apiSecret);
 
-$conn=mysqli_init();
+//$conn=mysqli_init();
 //mysqli_ssl_set($con, NULL, NULL, {ca-cert filename}, NULL, NULL);
-mysqli_real_connect($conn, "appmeet.mysql.database.azure.com", "myadmin@appmeet", "meet2017157920173861!","appmeet", 3306);
+//mysqli_real_connect($conn, "appmeet.mysql.database.azure.com", "myadmin@appmeet", "meet2017157920173861!","appmeet", 3306);
+$conn=mysqli_connect("appmeet.mysql.database.azure.com", "myadmin@appmeet", "meet2017157920173861!","appmeet", 3306);
 mysqli_set_charset($conn,"utf8");
 
 $video_name=$_GET["video_name"];//fragment 액티비티에서 넘어오는 값
-$group_num=(int)$_GET["group_no"];//마찬가지
+$group_num=($_GET["group_no"];//마찬가지
 
+$group_num=(int)$group_num;
 //if(isset($video_name)&& isset($group_num)){
 //    echo 'isset o';
 //}else {
@@ -96,20 +98,19 @@ $archive = $opentok->startArchive($sessionId, $archiveOptions);
 // archiveId 디비에 저장
 $archiveId = $archive->id;*/
 
-$archiveId="";
+$archiveId="test";
 $curplay=1;//현재 진행중
 $response= array();
 
-$statement = mysqli_prepare($conn, "INSERT INTO VIDEOSESSION(sessionId,videoName,curplay,archiveId,groupNum) VALUES(?,?,?,?,?)");
-mysqli_stmt_bind_param($statement, "ssisi", $sessionId, $video_name, $curplay, $archiveId,$group_num);
-
-if(mysqli_stmt_fetch($statement)){
-  $response["apiKey"]=$apiKey;
-  $response["sessionId"]=$sessionId;
-  $response["token"]=$token;
+$statement = mysqli_query($conn, "INSERT INTO VIDEOSESSION (sessionId,videoName,curplay,archiveId,groupNum) VALUES('$sessionId','$video_name','$curplay','$archiveId','$group_num')");
+if($statement){
+  $response["success"]=true;
 }
 
-mysqli_close($conn);
+$response["apiKey"]=$apiKey;
+$response["sessionId"]=$sessionId;
+$response["token"]=$token;
 
 echo json_encode($response);
+mysqli_close($conn);
 ?>
