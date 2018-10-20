@@ -1,20 +1,30 @@
 <?php
 require 'vendor/autoload.php';
+use OpenTok\OpenTok;
+use OpenTok\MediaMode;
+use OpenTok\ArchiveMode;
+use OpenTok\Session;
+use OpenTok\Role;
 
-$conn=pg_connect("host=ec2-23-21-147-71.compute-1.amazonaws.com dbname=dlfs3hk56lv93 user=guysuywytepygg password=cab4905d6f5fcd3034da4bee3305841803936c3953fb18f17cb8082c37a950d1");
-pg_set_client_encoding($conn, "UTF8");
+$con=mysqli_init();
+//mysqli_ssl_set($con, NULL, NULL, {ca-cert filename}, NULL, NULL);
+mysqli_real_connect($con, "appmeet.mysql.database.azure.com", "myadmin@appmeet", "meet2017157920173861!","appmeet", 3306);
+//$con=mysqli_connect("us-cdbr-iron-east-01.cleardb.net","b5abea0f4c48d4","f97c6b56","heroku_82b359327db23c4");
+mysqli_set_charset($con,"utf8");
 
-$sessionId=$_POST["sessionId"];
+$sessionId=$_GET["sessionId"];
 
-$result=pg_query($conn,"UPDATE VIDEOSESSION SET curplay=false WHERE sessionId='$sessionId'");
+$result=mysqli_query($con,"UPDATE VIDEOSESSION SET curplay=0 WHERE sessionId='$sessionId'");//현재 저장한 id
+
+$response=array();
+$response["success"]=false;
 
 if($result){
-  $response=array();
   $response["success"]=true;
 }
 
-pg_close($conn);
+mysqli_close($con);
 
-header('Content-Type: application/json; charset=utf8');
+//header('Content-Type: application/json; charset=utf8');
 echo json_encode($response);
 ?>
