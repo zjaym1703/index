@@ -19,6 +19,12 @@ mysqli_set_charset($conn,"utf8");
 $video_name=$_GET["video_name"];//fragment 액티비티에서 넘어오는 값
 $group_num=(int)$_GET["group_no"];//마찬가지
 
+if(isset($video_name)&& isset($group_num)){
+    echo '변수 존재 o';
+}else {
+  echo '변수 존재 x';
+}
+
 // Create a session that attempts to use peer-to-peer streaming:
 //$session = $opentok->createSession();
 // A session that uses the OpenTok Media Router, which is required for archiving:
