@@ -97,10 +97,7 @@ $response= array();
 $statement = mysqli_prepare($conn, "INSERT INTO VIDEOSESSION(sessionId,videoName,curplay,archiveId,groupNum) VALUES(?,?,?,?,?)");
 mysqli_stmt_bind_param($statement, "ssisi", $sessionId, $video_name, $curplay, $archiveId,$group_num);
 
-$response["success"]=false;
-
 while(mysqli_stmt_fetch($statement)){
-  $response["success"]=true;
   $response["apiKey"]=$apiKey;
   $response["sessionId"]=$sessionId;
   $response["token"]=$token;
