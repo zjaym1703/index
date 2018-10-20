@@ -14,12 +14,14 @@ mysqli_set_charset($con,"utf8");
 
 $sessionId=$_GET["sessionId"];
 
-$result=mysqli_query($con,"UPDATE VIDEOSESSION SET curplay=0 WHERE sessionId='$sessionId'");//현재 저장한 id
+$result=mysqli_prepare($con,"UPDATE VIDEOSESSION SET curplay=0 WHERE sessionId=?");//현재 저장한 id
+mysqli_stmt_bind_param($result,"s",$sessionId);
+mysqli_stmt_execute($result);
 
 $response=array();
 $response["success"]=false;
 
-if($result){
+if(mysqli_stmt_execute($result)){
   $response["success"]=true;
 }
 
