@@ -18,7 +18,7 @@ $conn=mysqli_connect("appmeet.mysql.database.azure.com", "myadmin@appmeet", "mee
 mysqli_set_charset($conn,"utf8");
 
 $video_name=$_GET["video_name"];//fragment 액티비티에서 넘어오는 값
-$group_num=($_GET["group_no"];//마찬가지
+$group_num=$_GET["group_no"];//마찬가지
 
 $group_num=(int)$group_num;
 //if(isset($video_name)&& isset($group_num)){
