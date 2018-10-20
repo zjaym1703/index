@@ -94,7 +94,7 @@ $archiveId="";
 $curplay=1;//현재 진행중
 $response= array();
 
-$statement = mysqli_prepare($conn, "INSERT INTO VIDEOSESSION(sessionId,roomname,curplay,archiveId,group_num) VALUES(?,?,?,?,?)");
+$statement = mysqli_prepare($conn, "INSERT INTO VIDEOSESSION(sessionId,videoName,curplay,archiveId,groupNum) VALUES(?,?,?,?,?)");
 mysqli_stmt_bind_param($statement, "ssisi", $sessionId, $video_name, $curplay, $archiveId,$group_num);
 
 $response["success"]=false;
