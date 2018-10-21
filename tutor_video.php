@@ -89,7 +89,7 @@ $archiveOptions = array(
    // 'name' => 'Important Presentation',     // default: null
     'hasAudio' => true,                     // default: true
     'hasVideo' => true,                     // default: true
-    'outputMode' => OutputMode::COMPOSED,   // default: OutputMode::COMPOSED
+   // 'outputMode' => OutputMode::COMPOSED,   // default: OutputMode::COMPOSED
     'resolution' => '1280x720'              // default: '640x480'
 );
 
