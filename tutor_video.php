@@ -98,6 +98,7 @@ $archive = $opentok->startArchive($sessionId, $archiveOptions);
 // archiveId 디비에 저장
 $archiveId = $archive->id;
 
+echo $arcivedId;
 $curplay=1;//현재 진행중
 $response= array();
 
