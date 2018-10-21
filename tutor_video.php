@@ -34,18 +34,18 @@ $group_num=(int)$group_num;
 //위치 힌트로 사용되는 IPv4 주소입니다. (기본값 : "")
 //$session = $opentok->createSession(array( 'location' => '192.168.123.106' ));
 //세션이 자동으로 아카이브
-//$sessionOptions = array(
-//    'archiveMode' => ArchiveMode::ALWAYS,
- //   'mediaMode' => MediaMode::ROUTED
-//);
-//$session = $opentok->createSession($sessionOptions);
+$sessionOptions = array(
+    'archiveMode' => ArchiveMode::ALWAYS,
+    'mediaMode' => MediaMode::ROUTED
+);
+$session = $opentok->createSession($sessionOptions);
 
 // Store this sessionId in the database for later use
 //$sessionId = $session->getSessionId();
 
 
 //18.10.21 추가
-$session = $opentok->createSession(array('mediaMode' => MediaMode::ROUTED));
+//$session = $opentok->createSession(array('mediaMode' => MediaMode::ROUTED));
 //$SessionOption 대신 mediaMode만 설정
 // Store this sessionId in the database for later use
 $sessionId = $session->getSessionId();
@@ -83,10 +83,10 @@ $token = $session->generateToken(array(
 //}
 
 //세션의 아카이브를 만듦
-/*
+
 //사용자 정의 옵션 사용해 아카이브 만들기
 $archiveOptions = array(
-    'name' => 'Important Presentation',     // default: null
+   // 'name' => 'Important Presentation',     // default: null
     'hasAudio' => true,                     // default: true
     'hasVideo' => true,                     // default: true
     'outputMode' => OutputMode::COMPOSED,   // default: OutputMode::COMPOSED
@@ -96,9 +96,8 @@ $archiveOptions = array(
 $archive = $opentok->startArchive($sessionId, $archiveOptions);
 
 // archiveId 디비에 저장
-$archiveId = $archive->id;*/
+$archiveId = $archive->id;
 
-$archiveId="test";
 $curplay=1;//현재 진행중
 $response= array();
 
