@@ -85,20 +85,21 @@ $token = $session->generateToken(array(
 //세션의 아카이브를 만듦
 
 //사용자 정의 옵션 사용해 아카이브 만들기
-$archiveOptions = array(
+/*$archiveOptions = array(
    // 'name' => 'Important Presentation',     // default: null
     'hasAudio' => true,                     // default: true
     'hasVideo' => true,                     // default: true
    // 'outputMode' => OutputMode::COMPOSED,   // default: OutputMode::COMPOSED
     'resolution' => '1280x720'              // default: '640x480'
-);
+);*/
 
-$archive = $opentok->startArchive($sessionId, $archiveOptions);
+//$archive = $opentok->startArchive($sessionId, $archiveOptions);
 
 // archiveId 디비에 저장
-$archiveId = $archive->id;
+//$archiveId = $archive->id;
 
-echo $arcivedId;
+//echo $arcivedId;
+$arcivedId="";
 $curplay=1;//현재 진행중
 $response= array();
 
