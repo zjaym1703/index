@@ -58,7 +58,7 @@ $sessionId = $session->getSessionId();
 //$token = $session->generateToken();
 // Set some options in a token
 $token = $session->generateToken(array(
-    'role'       => Role::MODERATOR,
+    'role'       => RoleConstants::PUBLISHER,
     'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
 ));
 
