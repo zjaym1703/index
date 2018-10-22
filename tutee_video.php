@@ -24,19 +24,21 @@ $opentok = new OpenTok($apiKey, $apiSecret);
 $sessionId="";
 $videoName="";
 
-$state=mysqli_query($conn,"SELECT sessionId,videoName FROM VIDEOSESSION WHERE curplay=1 and groupNum='$group_num'");
+$state=mysqli_query($conn,"SELECT sessionId,videoName,token FROM VIDEOSESSION WHERE curplay=1 and groupNum='$group_num'");
 
 while($row=mysqli_fetch_array($state)){
     $sessionId=$row[0];
     $videoName=$row[1];
+    $token=$row[2];
 }
 
+/*
 if($sessionId){
   $token=$opentok->generateToken($sessionId, array(
     'role'       => RoleConstants::PUBLISHER,
     'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
     ));
-}
+}*/
 
 
 $response=array();
