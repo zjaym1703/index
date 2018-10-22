@@ -59,7 +59,7 @@ $sessionId = $session->getSessionId();
 // Set some options in a token
 $token = $session->generateToken(array(
     'role'       => RoleConstants::PUBLISHER,
-    'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
+    'expireTime' => time()+(7 * 24 * 60 * 60) // in one week
 ));
 
 //$conn=pg_connect(getenv("postgres://guysuywytepygg:cab4905d6f5fcd3034da4bee3305841803936c3953fb18f17cb8082c37a950d1@ec2-23-21-147-71.compute-1.amazonaws.com:5432/dlfs3hk56lv93"));
@@ -102,7 +102,7 @@ $arcivedId="";
 $curplay=1;//현재 진행중
 $response= array();
 
-$statement = mysqli_query($conn, "INSERT INTO VIDEOSESSION (sessionId,videoName,curplay,archiveId,groupNum) VALUES('$sessionId','$video_name','$curplay','$archiveId','$group_num')");
+$statement = mysqli_query($conn, "INSERT INTO VIDEOSESSION (sessionId,videoName,curplay,archiveId,groupNum,token) VALUES('$sessionId','$video_name','$curplay','$archiveId','$group_num','$token')");
 if($statement){
   $response["success"]=true;
 }
