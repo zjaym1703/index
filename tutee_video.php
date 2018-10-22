@@ -21,23 +21,30 @@ $group_num=$_GET["group_no"];
 $group_num=(int)$group_num;
 //토큰생성
 $opentok = new OpenTok($apiKey, $apiSecret);
+$sessionId="";
+$videoName="";
 
 $state=mysqli_query($conn,"SELECT sessionId,videoName FROM VIDEOSESSION WHERE curplay=1 and groupNum='$group_num'");
 
 while($row=mysqli_fetch_array($state)){
-  $sessionId=$row[0];
-  $videoName=$row[1];
+    $sessionId=$row[0];
+    $videoName=$row[1];
 }
 
-$token=$opentok->generateToken($sessionId, array(
-  'role'       => Role::SUBSCRIBER,
-  'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
-  'data'       => 'name=Johnny'//방이름 변경
-  ));
+echo $sessionId;
+if($sessionId){
+  $token=$opentok->generateToken($sessionId, array(
+    'role'       => Role::SUBSCRIBER,
+    'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
+    'data'       => 'name=Johnny'//방이름 변경
+    ));
+}
+
 
 $response=array();
 $response["success"]=false;
-if($state){
+
+if($sessionId){
   $response["apiKey"]=$apiKey;
   $response["sessionid"]=$sessionId;
   $response["token"]=$token;
