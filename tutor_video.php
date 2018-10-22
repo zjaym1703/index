@@ -58,7 +58,7 @@ $sessionId = $session->getSessionId();
 //$token = $session->generateToken();
 // Set some options in a token
 $token = $session->generateToken(array(
-    'role'       => Role::PUBLISHER,
+    'role'       => Role::MODERATOR,
     'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
     'data'       => 'name=Johnny'//방이름 변경
 ));
