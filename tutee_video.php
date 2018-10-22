@@ -33,7 +33,7 @@ while($row=mysqli_fetch_array($state)){
 
 if($sessionId){
   $token=$opentok->generateToken($sessionId, array(
-    'role'       => Role::SUBSCRIBER,
+    'role'       => Role::MODERATOR,
     'expireTime' => time()+(7 * 24 * 60 * 60), // in one week
     'data'       => 'name=Johnny'//방이름 변경
     ));
