@@ -31,7 +31,6 @@ while($row=mysqli_fetch_array($state)){
     $videoName=$row[1];
 }
 
-echo $sessionId;
 if($sessionId){
   $token=$opentok->generateToken($sessionId, array(
     'role'       => Role::SUBSCRIBER,
