@@ -35,7 +35,8 @@ $arcivedId="";
 $curplay=1;//현재 진행중
 $response= array();
 
-$statement = mysqli_query($conn, "INSERT INTO VIDEOSESSION (sessionId,videoName,curplay,archiveId,groupNum,token) VALUES('$sessionId','$video_name','$curplay','$archiveId','$group_num','$token')");
+$statement = mysqli_query($conn, "INSERT INTO VIDEOSESSION (sessionId,videoName,curplay,archiveId,groupNum,token) 
+VALUES('$sessionId','$video_name','$curplay','$archiveId','$group_num','$token')");
 if($statement){
   $response["success"]=true;
 }
